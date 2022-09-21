@@ -68,6 +68,7 @@ class python {
 
   $pip_packages = [
     "ipython",
+    "cython",
     "django",
     "django-debug-toolbar",
     "psycopg2-binary",
