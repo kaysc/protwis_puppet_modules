@@ -62,13 +62,13 @@ class python {
 
   # update pip
   exec { "upgrade-pip":
-      command => "/env/bin/pip3 install --upgrade pip"
+      command => "/env/bin/pip3 install --upgrade pip",
   }
 
 
   # create virtualenv
   exec { "create-virtualenv":
-    command => "python3.7 -m venv /env",
+      command => "python3.7 -m venv /env",
   }
 
   $pip_packages = [
