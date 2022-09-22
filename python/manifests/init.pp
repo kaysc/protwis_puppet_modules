@@ -5,7 +5,7 @@ define puppet::install::pip (
   exec { "install-$pip_package":
     command => "/env/bin/pip3 install $pip_package",
     timeout => 1800,
-    require => [Package["postgresql", "postgresql-contrib"], Exec["create-virtualenv"]]
+    require => [Package["postgresql", "postgresql-contrib"], Exec["create-virtualenv"], Exec["update-pip"]]
   }
 }
 
@@ -61,7 +61,7 @@ class python {
   #}
 
   # update pip
-  exec { "install-pip":
+  exec { "upgrade-pip":
       command => "/env/bin/pip3 install --upgrade pip"
   }
 
@@ -107,7 +107,7 @@ class python {
 
   # download and install dssp
   exec { "download-dssp":
-    command => "/usr/bin/wget -q ftp://ftp.cmbi.umcn.nl//pub/molbio/data/dssp/dssp-2.0.4-linux-amd64 -O /env/bin/dssp",
+    command => "/usr/bin/wget -q ftp://ftp.cmbi.umcn.nl/pub/molbio/data/dssp/dssp-2.0.4-linux-amd64 -O /env/bin/dssp",
     # command => "/usr/bin/wget -q ftp://ftp.cmbi.ru.nl/pub/software/dssp/dssp-2.0.4-linux-amd64 -O /env/bin/dssp",  # Old FTP path
     creates => "/env/bin/dssp",
     require => Exec["create-virtualenv"],
