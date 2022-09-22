@@ -60,6 +60,11 @@ class python {
   #    },
   #}
 
+  # update pip
+  exec { "install-pip":
+      command => "/env/bin/pip3 install --upgrade pip"
+  }
+
 
   # create virtualenv
   exec { "create-virtualenv":
