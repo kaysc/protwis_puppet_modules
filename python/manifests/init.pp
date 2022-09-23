@@ -68,7 +68,7 @@ class python {
 
   # create virtualenv
   exec { "create-virtualenv":
-      command => "python3.7 -m venv /env",
+      command => "python3.7 -m venv /env && /env/bin/pip3 install --upgrade pip",
   }
 
   $pip_packages = [
