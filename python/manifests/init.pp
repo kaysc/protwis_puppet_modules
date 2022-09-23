@@ -5,7 +5,7 @@ define puppet::install::pip (
   exec { "install-$pip_package":
     command => "/env/bin/pip3 install $pip_package",
     timeout => 1800,
-    require => [Package["postgresql", "postgresql-contrib"], Exec["create-virtualenv"], Exec["upgrade-pip"]]
+    require => [Package["postgresql", "postgresql-contrib"], Exec["create-virtualenv"]]
   }
 }
 
@@ -59,11 +59,6 @@ class python {
   #        "Ubuntu" => "apt install -y python3-pip",
   #    },
   #}
-
-  # update pip
-  exec { "upgrade-pip":
-      command => "/env/bin/pip3 install --upgrade pip",
-  }
 
 
   # create virtualenv
